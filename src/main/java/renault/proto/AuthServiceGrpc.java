@@ -1,3 +1,5 @@
+package renault.proto;
+
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
@@ -10,7 +12,7 @@ public final class AuthServiceGrpc {
 
   private AuthServiceGrpc() {}
 
-  public static final java.lang.String SERVICE_NAME = "AuthService";
+  public static final String SERVICE_NAME = "AuthService";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<AuthServiceProto.TokenRequest,
@@ -50,7 +52,7 @@ public final class AuthServiceGrpc {
   public static AuthServiceStub newStub(io.grpc.Channel channel) {
     io.grpc.stub.AbstractStub.StubFactory<AuthServiceStub> factory =
       new io.grpc.stub.AbstractStub.StubFactory<AuthServiceStub>() {
-        @java.lang.Override
+        @Override
         public AuthServiceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
           return new AuthServiceStub(channel, callOptions);
         }
@@ -65,7 +67,7 @@ public final class AuthServiceGrpc {
       io.grpc.Channel channel) {
     io.grpc.stub.AbstractStub.StubFactory<AuthServiceBlockingStub> factory =
       new io.grpc.stub.AbstractStub.StubFactory<AuthServiceBlockingStub>() {
-        @java.lang.Override
+        @Override
         public AuthServiceBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
           return new AuthServiceBlockingStub(channel, callOptions);
         }
@@ -80,7 +82,7 @@ public final class AuthServiceGrpc {
       io.grpc.Channel channel) {
     io.grpc.stub.AbstractStub.StubFactory<AuthServiceFutureStub> factory =
       new io.grpc.stub.AbstractStub.StubFactory<AuthServiceFutureStub>() {
-        @java.lang.Override
+        @Override
         public AuthServiceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
           return new AuthServiceFutureStub(channel, callOptions);
         }
@@ -95,7 +97,7 @@ public final class AuthServiceGrpc {
     /**
      */
     default void validateToken(AuthServiceProto.TokenRequest request,
-        io.grpc.stub.StreamObserver<AuthServiceProto.TokenResponse> responseObserver) {
+                               io.grpc.stub.StreamObserver<AuthServiceProto.TokenResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getValidateTokenMethod(), responseObserver);
     }
   }
@@ -106,7 +108,7 @@ public final class AuthServiceGrpc {
   public static abstract class AuthServiceImplBase
       implements io.grpc.BindableService, AsyncService {
 
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+    @Override public final io.grpc.ServerServiceDefinition bindService() {
       return AuthServiceGrpc.bindService(this);
     }
   }
@@ -121,7 +123,7 @@ public final class AuthServiceGrpc {
       super(channel, callOptions);
     }
 
-    @java.lang.Override
+    @Override
     protected AuthServiceStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new AuthServiceStub(channel, callOptions);
@@ -130,7 +132,7 @@ public final class AuthServiceGrpc {
     /**
      */
     public void validateToken(AuthServiceProto.TokenRequest request,
-        io.grpc.stub.StreamObserver<AuthServiceProto.TokenResponse> responseObserver) {
+                              io.grpc.stub.StreamObserver<AuthServiceProto.TokenResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getValidateTokenMethod(), getCallOptions()), request, responseObserver);
     }
@@ -146,7 +148,7 @@ public final class AuthServiceGrpc {
       super(channel, callOptions);
     }
 
-    @java.lang.Override
+    @Override
     protected AuthServiceBlockingStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new AuthServiceBlockingStub(channel, callOptions);
@@ -170,7 +172,7 @@ public final class AuthServiceGrpc {
       super(channel, callOptions);
     }
 
-    @java.lang.Override
+    @Override
     protected AuthServiceFutureStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new AuthServiceFutureStub(channel, callOptions);
@@ -200,8 +202,8 @@ public final class AuthServiceGrpc {
       this.methodId = methodId;
     }
 
-    @java.lang.Override
-    @java.lang.SuppressWarnings("unchecked")
+    @Override
+    @SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_VALIDATE_TOKEN:
@@ -213,8 +215,8 @@ public final class AuthServiceGrpc {
       }
     }
 
-    @java.lang.Override
-    @java.lang.SuppressWarnings("unchecked")
+    @Override
+    @SuppressWarnings("unchecked")
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
@@ -240,12 +242,12 @@ public final class AuthServiceGrpc {
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     AuthServiceBaseDescriptorSupplier() {}
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return AuthServiceProto.getDescriptor();
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
       return getFileDescriptor().findServiceByName("AuthService");
     }
@@ -259,13 +261,13 @@ public final class AuthServiceGrpc {
   private static final class AuthServiceMethodDescriptorSupplier
       extends AuthServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-    private final java.lang.String methodName;
+    private final String methodName;
 
-    AuthServiceMethodDescriptorSupplier(java.lang.String methodName) {
+    AuthServiceMethodDescriptorSupplier(String methodName) {
       this.methodName = methodName;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
       return getServiceDescriptor().findMethodByName(methodName);
     }

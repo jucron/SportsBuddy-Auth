@@ -1,10 +1,7 @@
 syntax = "proto3";
 
-package renault;
-
-service AuthService {
-  rpc ValidateToken(TokenRequest) returns (TokenResponse);
-}
+//package renault;
+option java_outer_classname = "AuthServiceProto";
 
 message TokenRequest {
   string token = 1;
@@ -12,4 +9,8 @@ message TokenRequest {
 
 message TokenResponse {
   bool is_valid = 1;
+}
+
+service AuthService {
+  rpc ValidateToken(TokenRequest) returns (TokenResponse);
 }
