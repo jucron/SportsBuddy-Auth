@@ -3,14 +3,52 @@ syntax = "proto3";
 //package renault;
 option java_outer_classname = "AuthServiceProto";
 
-message TokenRequest {
+message Credential {
+  string username = 1;
+  string password = 2;
+}
+message AuthenticateRequest {
+  Credential credential = 1;
+}
+
+message AuthenticateResponse {
+  string status = 1;
+  string token = 2;
+}
+
+message RegisterRequest {
+  Credential credential = 1;
+
+}
+message RegisterResponse {
+  string status = 1;
+  bool isOk = 2;
+}
+
+message IntrospectRequest {
   string token = 1;
 }
 
-message TokenResponse {
-  bool is_valid = 1;
+message IntrospectResponse {
+  string status = 1;
+  string token = 2;
+}
+
+message ExpireRequest {
+  string token = 1;
+}
+
+message ExpireResponse {
+  string status = 1;
+  bool isOk = 2;
 }
 
 service AuthService {
-  rpc ValidateToken(TokenRequest) returns (TokenResponse);
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+
+  rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
+
+  rpc Introspect(IntrospectRequest) returns (IntrospectResponse);
+
+  rpc Expire(ExpireRequest) returns (ExpireResponse);
 }
