@@ -1,4 +1,4 @@
-package renault.protobuf.java;
+package renault.protobuf;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
@@ -12,7 +12,7 @@ public final class AuthServiceGrpc {
 
   private AuthServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "AuthService";
+  public static final java.lang.String SERVICE_NAME = "AuthService";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<AuthServiceProto.RegisterRequest,
@@ -145,7 +145,7 @@ public final class AuthServiceGrpc {
   public static AuthServiceStub newStub(io.grpc.Channel channel) {
     io.grpc.stub.AbstractStub.StubFactory<AuthServiceStub> factory =
       new io.grpc.stub.AbstractStub.StubFactory<AuthServiceStub>() {
-        @Override
+        @java.lang.Override
         public AuthServiceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
           return new AuthServiceStub(channel, callOptions);
         }
@@ -160,7 +160,7 @@ public final class AuthServiceGrpc {
       io.grpc.Channel channel) {
     io.grpc.stub.AbstractStub.StubFactory<AuthServiceBlockingStub> factory =
       new io.grpc.stub.AbstractStub.StubFactory<AuthServiceBlockingStub>() {
-        @Override
+        @java.lang.Override
         public AuthServiceBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
           return new AuthServiceBlockingStub(channel, callOptions);
         }
@@ -175,7 +175,7 @@ public final class AuthServiceGrpc {
       io.grpc.Channel channel) {
     io.grpc.stub.AbstractStub.StubFactory<AuthServiceFutureStub> factory =
       new io.grpc.stub.AbstractStub.StubFactory<AuthServiceFutureStub>() {
-        @Override
+        @java.lang.Override
         public AuthServiceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
           return new AuthServiceFutureStub(channel, callOptions);
         }
@@ -190,28 +190,28 @@ public final class AuthServiceGrpc {
     /**
      */
     default void register(AuthServiceProto.RegisterRequest request,
-                          io.grpc.stub.StreamObserver<AuthServiceProto.RegisterResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<AuthServiceProto.RegisterResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRegisterMethod(), responseObserver);
     }
 
     /**
      */
     default void authenticate(AuthServiceProto.AuthenticateRequest request,
-                              io.grpc.stub.StreamObserver<AuthServiceProto.AuthenticateResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<AuthServiceProto.AuthenticateResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAuthenticateMethod(), responseObserver);
     }
 
     /**
      */
     default void introspect(AuthServiceProto.IntrospectRequest request,
-                            io.grpc.stub.StreamObserver<AuthServiceProto.IntrospectResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<AuthServiceProto.IntrospectResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getIntrospectMethod(), responseObserver);
     }
 
     /**
      */
     default void expire(AuthServiceProto.ExpireRequest request,
-                        io.grpc.stub.StreamObserver<AuthServiceProto.ExpireResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<AuthServiceProto.ExpireResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getExpireMethod(), responseObserver);
     }
   }
@@ -222,7 +222,7 @@ public final class AuthServiceGrpc {
   public static abstract class AuthServiceImplBase
       implements io.grpc.BindableService, AsyncService {
 
-    @Override public final io.grpc.ServerServiceDefinition bindService() {
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return AuthServiceGrpc.bindService(this);
     }
   }
@@ -237,7 +237,7 @@ public final class AuthServiceGrpc {
       super(channel, callOptions);
     }
 
-    @Override
+    @java.lang.Override
     protected AuthServiceStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new AuthServiceStub(channel, callOptions);
@@ -246,7 +246,7 @@ public final class AuthServiceGrpc {
     /**
      */
     public void register(AuthServiceProto.RegisterRequest request,
-                         io.grpc.stub.StreamObserver<AuthServiceProto.RegisterResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<AuthServiceProto.RegisterResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getRegisterMethod(), getCallOptions()), request, responseObserver);
     }
@@ -254,7 +254,7 @@ public final class AuthServiceGrpc {
     /**
      */
     public void authenticate(AuthServiceProto.AuthenticateRequest request,
-                             io.grpc.stub.StreamObserver<AuthServiceProto.AuthenticateResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<AuthServiceProto.AuthenticateResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAuthenticateMethod(), getCallOptions()), request, responseObserver);
     }
@@ -262,7 +262,7 @@ public final class AuthServiceGrpc {
     /**
      */
     public void introspect(AuthServiceProto.IntrospectRequest request,
-                           io.grpc.stub.StreamObserver<AuthServiceProto.IntrospectResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<AuthServiceProto.IntrospectResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getIntrospectMethod(), getCallOptions()), request, responseObserver);
     }
@@ -270,7 +270,7 @@ public final class AuthServiceGrpc {
     /**
      */
     public void expire(AuthServiceProto.ExpireRequest request,
-                       io.grpc.stub.StreamObserver<AuthServiceProto.ExpireResponse> responseObserver) {
+        io.grpc.stub.StreamObserver<AuthServiceProto.ExpireResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getExpireMethod(), getCallOptions()), request, responseObserver);
     }
@@ -286,7 +286,7 @@ public final class AuthServiceGrpc {
       super(channel, callOptions);
     }
 
-    @Override
+    @java.lang.Override
     protected AuthServiceBlockingStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new AuthServiceBlockingStub(channel, callOptions);
@@ -331,7 +331,7 @@ public final class AuthServiceGrpc {
       super(channel, callOptions);
     }
 
-    @Override
+    @java.lang.Override
     protected AuthServiceFutureStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new AuthServiceFutureStub(channel, callOptions);
@@ -388,8 +388,8 @@ public final class AuthServiceGrpc {
       this.methodId = methodId;
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
+    @java.lang.Override
+    @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_REGISTER:
@@ -413,8 +413,8 @@ public final class AuthServiceGrpc {
       }
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
+    @java.lang.Override
+    @java.lang.SuppressWarnings("unchecked")
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
@@ -461,12 +461,12 @@ public final class AuthServiceGrpc {
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     AuthServiceBaseDescriptorSupplier() {}
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return AuthServiceProto.getDescriptor();
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
       return getFileDescriptor().findServiceByName("AuthService");
     }
@@ -480,13 +480,13 @@ public final class AuthServiceGrpc {
   private static final class AuthServiceMethodDescriptorSupplier
       extends AuthServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-    private final String methodName;
+    private final java.lang.String methodName;
 
-    AuthServiceMethodDescriptorSupplier(String methodName) {
+    AuthServiceMethodDescriptorSupplier(java.lang.String methodName) {
       this.methodName = methodName;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
       return getServiceDescriptor().findMethodByName(methodName);
     }

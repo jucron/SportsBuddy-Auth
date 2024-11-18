@@ -3,8 +3,8 @@ package renault.services;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 import renault.model.Credential;
-import renault.protobuf.java.AuthServiceGrpc;
-import renault.protobuf.java.AuthServiceProto;
+import renault.protobuf.AuthServiceGrpc;
+import renault.protobuf.AuthServiceProto;
 import renault.repositories.CredentialsRepository;
 import renault.repositories.RepositoryLocator;
 import renault.utils.PasswordUtils;
@@ -31,7 +31,8 @@ public class AuthServiceImpl extends AuthServiceGrpc.AuthServiceImplBase {
             log.info("INFO<AuthService>: username {{}} not in DB, registering.", request.getCredential().getUsername());
             //if username not taken, make registry in repository
             String username = request.getCredential().getUsername();
-            String encodedPassword = PasswordUtils.hashPassword(request.getCredential().getPassword());
+            String pass = request.getCredential().getPassword();
+            String encodedPassword = PasswordUtils.hashPassword(pass);
             Credential credential = new Credential()
                     .withUsername(username)
                     .withPassword(encodedPassword);
@@ -60,7 +61,9 @@ public class AuthServiceImpl extends AuthServiceGrpc.AuthServiceImplBase {
             //proceed authentication
             if (PasswordUtils.verifyPassword(request.getCredential().getPassword(), credential.getPassword())) {
                 status = "Auth successful";
-                token = this.jwtService.generateToken(credential);
+                String newToken = this.jwtService.generateToken(credential);
+                log.info("INFO<AuthService>: new token generated for user {{}}, token is: \n{}", request.getCredential().getUsername(),newToken);
+                token = newToken;
             } else {
                 status = "Wrong password";
                 token = "N/A";

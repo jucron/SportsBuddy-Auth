@@ -2,7 +2,8 @@ syntax = "proto3";
 
 //package renault;
 option java_outer_classname = "AuthServiceProto";
-
+import "api/annotations.proto"; // Import for HTTP annotations
+//
 message Credential {
   string username = 1;
   string password = 2;
@@ -44,9 +45,19 @@ message ExpireResponse {
 }
 
 service AuthService {
-  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc Register(RegisterRequest) returns (RegisterResponse){
+    option (google.api.http) = {
+      post: "api/v1/auth/register"
+      body: "credential"
+    };
+  };
 
-  rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
+  rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse){
+    option (google.api.http) = {
+      post: "api/v1/auth/auth"
+      body: "credential"
+    };
+  };
 
   rpc Introspect(IntrospectRequest) returns (IntrospectResponse);
 

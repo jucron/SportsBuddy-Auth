@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import javax.crypto.SecretKey;
 import java.util.*;
 import java.util.function.Function;
+
+import renault.properties.PropertiesLocator;
 import renault.properties.TokenProperties;
 import renault.model.Credential;
 
@@ -38,7 +40,7 @@ public class JwtService {
      Encrypt data from: https://generate-random.org/encryption-key-generator
      */
 
-    private final TokenProperties tokenProperties = new TokenProperties();
+    private final TokenProperties tokenProperties = PropertiesLocator.getTokenProperties();
     public static Set<String> blackListTokens = new HashSet<>();
 
     public String extractUsername(String jwtToken) {
