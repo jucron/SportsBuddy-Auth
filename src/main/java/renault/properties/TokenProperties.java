@@ -9,5 +9,6 @@ public class TokenProperties {
 
     private String SECRET_KEY;
     private int tokenExpirationTime;
+    private String issuer;
 
 }

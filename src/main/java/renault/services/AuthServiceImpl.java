@@ -1,9 +1,7 @@
 package renault.services;
 
-import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import renault.model.Credential;
 import renault.protobuf.java.AuthServiceGrpc;
 import renault.protobuf.java.AuthServiceProto;
@@ -85,12 +83,58 @@ public class AuthServiceImpl extends AuthServiceGrpc.AuthServiceImplBase {
 
     @Override
     public void introspect(AuthServiceProto.IntrospectRequest request, StreamObserver<AuthServiceProto.IntrospectResponse> responseObserver) {
-        super.introspect(request, responseObserver);
+        String status;
+        String token;
+
+        Optional<Credential> credentialOptional = credentialsRepository.findByUsername(jwtService.extractUsername(request.getToken()));
+        if (credentialOptional.isPresent()) {
+            if (jwtService.isTokenValid(request.getToken())) {
+                status = "Token is valid";
+                token = request.getToken();
+                if (jwtService.isTokenOnRenewalRange(request.getToken())) {
+                    status = "Token is renewed";
+                    token = jwtService.generateToken(credentialOptional.get());
+                }
+            } else {
+                status = "Token is not valid";
+                token = "";
+            }
+        } else {
+            status = "Token with unknown Username";
+            token = "";
+        }
+
+        // Build the response
+        AuthServiceProto.IntrospectResponse response = AuthServiceProto.IntrospectResponse.newBuilder()
+                .setStatus(status)
+                .setToken(token)
+                .build();
+        // Send the response to the client
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
     }
 
     @Override
     public void expire(AuthServiceProto.ExpireRequest request, StreamObserver<AuthServiceProto.ExpireResponse> responseObserver) {
-        super.expire(request, responseObserver);
+        String status;
+        boolean isOk;
+
+        if (jwtService.isTokenValid(request.getToken())) {
+            jwtService.addTokenToBlackList(request.getToken());
+            status = "Token added to blacklist";
+            isOk = true;
+        } else {
+            status = "Token is not valid";
+            isOk = false;
+        }
+        // Build the response
+        AuthServiceProto.ExpireResponse response = AuthServiceProto.ExpireResponse.newBuilder()
+                .setStatus(status)
+                .setIsOk(isOk)
+                .build();
+        // Send the response to the client
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
     }
 }
 

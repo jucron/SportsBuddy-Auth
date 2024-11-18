@@ -65,10 +65,12 @@ public class Main {
             // Access properties
             String secret = properties.getProperty("token.secret");
             String expiration = properties.getProperty("token.expiration");
+            String issuer = properties.getProperty("token.issuer");
 
             TokenProperties tokenProperties = PropertiesLocator.getTokenProperties();
             tokenProperties.setSECRET_KEY(secret);
             tokenProperties.setTokenExpirationTime(Integer.parseInt(expiration));
+            tokenProperties.setIssuer(issuer);
 
             log.info("INFO <Main>: Token properties loaded correctly");
 
