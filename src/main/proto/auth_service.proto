@@ -3,6 +3,18 @@ syntax = "proto3";
 //package renault;
 option java_outer_classname = "AuthServiceProto";
 import "api/annotations.proto"; // Import for HTTP annotations
+import "openapiv2/annotations.proto";
+import "openapiv2/openapiv2.proto";
+
+// These annotations are used when generating the OpenAPI file.
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {version: "1.0"};
+  external_docs: {
+    url: "https://github.com/jucron/SportsBuddy-Auth";
+    description: "Auth Service for SportBuddy WebApp. Implemented with gRPC.";
+  }
+  schemes: HTTPS;
+};
 //
 message Credential {
   string username = 1;
@@ -50,12 +62,22 @@ service AuthService {
       post: "api/v1/auth/register"
       body: "credential"
     };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Register a new user"
+      description: "Add a new user to the server."
+      tags: "Users"
+    };
   };
 
   rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse){
     option (google.api.http) = {
       post: "api/v1/auth/auth"
       body: "credential"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Authenticate a user"
+      description: "Attempt to authenticate a user and returns a JWT if valid."
+      tags: "Users"
     };
   };
 
